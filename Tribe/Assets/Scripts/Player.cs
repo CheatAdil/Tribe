@@ -8,8 +8,20 @@ public class Player : Entity
 	{
 		Vector3 movementDirection = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0f);
 		transform.Translate(movementDirection.normalized * movementSpeed * Time.deltaTime, Space.World);
+		if (movementDirection == Vector3.zero) 
+		{
+			if (!holding) SwitchState(States.idle);
+			else SwitchState(States.carry_idle);
+		}
+		else 
+		{
+			if (!holding) SwitchState(States.move);
+			else SwitchState(States.carry_move);
+		}
 
 
 		if (Input.GetKeyDown(KeyCode.Space)) Attack();
+		if (Input.GetKeyDown(KeyCode.E)) Interact();
 	}
 }
+
