@@ -141,6 +141,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   canHold: 1
+  hold_what:
+    serializedVersion: 2
+    m_Bits: 64
   holding: 0
   holdingPoint: {fileID: 4825190544057879470}
   Item: {fileID: 0}

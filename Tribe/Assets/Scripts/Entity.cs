@@ -18,6 +18,7 @@ public class Entity : MonoBehaviour
 
 	[Header("Holding")]
 	[SerializeField] protected bool canHold;
+	[SerializeField] private LayerMask hold_what;
 	[SerializeField] protected bool holding;
 	[SerializeField] protected Transform holdingPoint;
 	[SerializeField] protected GameObject Item;
@@ -62,18 +63,11 @@ public class Entity : MonoBehaviour
 			}
 			else
 			{
-				//// первым делом ищут еду
-				Collider[] colliders = Physics.OverlapSphere(transform.position, attack_reach, ~6); // check for food
+				//// первым делом подбираем
+				Collider[] colliders = Physics.OverlapSphere(transform.position, attack_reach, hold_what); 
 				if (colliders.Length != 0) 
 				{
-					for (int i = 0; i < colliders.Length; i++)
-					{
-						print(colliders[i].name);
-					}
-					if (colliders[0].tag == "food")
-					{
-						pickup(colliders[0].gameObject);
-					}
+					pickup(colliders[0].gameObject);
 				}
 				else 
 				{
