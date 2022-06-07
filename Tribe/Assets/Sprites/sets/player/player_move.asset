@@ -15,3 +15,4 @@ MonoBehaviour:
   SPRITES:
   - {fileID: -2006703948, guid: 206589dcb9c9f8c499c6d31d82831d55, type: 3}
   - {fileID: -622734567, guid: 206589dcb9c9f8c499c6d31d82831d55, type: 3}
+  repeat_times: -1

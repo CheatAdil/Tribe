@@ -9,10 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a496b99065779ac4782da2f487861f14, type: 3}
-  m_Name: player_carryidle
+  m_Script: {fileID: 11500000, guid: 3796e1a1131ea84409c65ec8ccafbd25, type: 3}
+  m_Name: test1
   m_EditorClassIdentifier: 
-  SPRITES:
-  - {fileID: 48960394, guid: 206589dcb9c9f8c499c6d31d82831d55, type: 3}
-  - {fileID: 48960394, guid: 206589dcb9c9f8c499c6d31d82831d55, type: 3}
-  repeat_times: -1
+  Name: Person
+  obj: {fileID: 8979015128186297699, guid: 56f3edcc81f9d7a4f8c87005e61107ac, type: 3}
+  weight: 1
+  amountMin: 2
+  amountMax: 4
+  dropForce: 3
+  duration: 0.4
+  variance: 0.1
