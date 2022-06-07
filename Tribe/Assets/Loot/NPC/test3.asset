@@ -17,6 +17,6 @@ MonoBehaviour:
   weight: 0.3
   amountMin: 1
   amountMax: 1
-  dropForce: 2
+  dropForce: 1
   duration: 0.4
   variance: 0.1

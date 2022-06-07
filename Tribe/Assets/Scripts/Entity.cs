@@ -11,6 +11,7 @@ public class Entity : MonoBehaviour
     [SerializeField] protected int maxHealth;
     [SerializeField] public int health;
     [SerializeField] protected float movementSpeed;
+	[SerializeField] protected int lifeTime;
 
 	[Header("Attack")]
 	[SerializeField] protected float damage;
@@ -62,6 +63,11 @@ public class Entity : MonoBehaviour
 		health = maxHealth;
 		anim = GetComponent<Sprite_animator>();
 		InitDrop();
+		if (anim != null)
+		{
+			anim.enabled = true;
+			anim.init(Sprite_sets[((int)state)].SPRITES, Sprite_sets[((int)state)].repeat_times);
+		}
 	}
 	private void GetHurt(int damage)
 	{

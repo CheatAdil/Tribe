@@ -28,7 +28,7 @@ public class LootDropper : MonoBehaviour
         {
             vars[i] = Random.Range(1f, 1f + v);
             orig[i] = l[i].transform.position;
-            targets[i] = (new Vector3(Mathf.Cos(Random.Range(0, Mathf.PI * 2)), Mathf.Sin(Random.Range(0, Mathf.PI * 2)), z)) - orig[i];
+            targets[i] = (new Vector3(Mathf.Cos(Random.Range(0, 360f)), Mathf.Sin(Random.Range(0, 360f)), z)) - orig[i];
         }
     }
     private void Update()

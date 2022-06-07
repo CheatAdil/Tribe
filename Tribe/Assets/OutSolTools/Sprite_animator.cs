@@ -8,11 +8,11 @@ public class Sprite_animator : MonoBehaviour
     public Sprite[] sprites;
     public float period;
     public int RepeatTimes; ///-1 for infinity
-    [SerializeField] private bool infinite;
-    [SerializeField] private float timer = 0;
-    [SerializeField] private float step;
-    [SerializeField] private float next_mark;
-    [SerializeField] private int current = 0;
+    private bool infinite;
+    private float timer = 0;
+    private float step;
+    private float next_mark;
+    private int current = 0;
 
     private void Start()
     {
