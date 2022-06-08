@@ -426,20 +426,32 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1044907793673038602, guid: 1493cd52ff116c14697873c8c60708f1, type: 3}
+      propertyPath: maxHealth
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1044907793673038602, guid: 1493cd52ff116c14697873c8c60708f1, type: 3}
+      propertyPath: StayAfterDeath
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1044907793673038602, guid: 1493cd52ff116c14697873c8c60708f1, type: 3}
       propertyPath: HitLoot.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1044907793673038602, guid: 1493cd52ff116c14697873c8c60708f1, type: 3}
       propertyPath: DeathLoot.Array.size
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1044907793673038602, guid: 1493cd52ff116c14697873c8c60708f1, type: 3}
       propertyPath: HitLoot.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: 40e3ea1e49834e04c853cb53b069409a, type: 2}
+      objectReference: {fileID: 11400000, guid: e4fdf734236d2c74cbc2d2eadb0797b2, type: 2}
     - target: {fileID: 1044907793673038602, guid: 1493cd52ff116c14697873c8c60708f1, type: 3}
       propertyPath: HitLoot.Array.data[1]
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1044907793673038602, guid: 1493cd52ff116c14697873c8c60708f1, type: 3}
+      propertyPath: Sprite_sets.Array.size
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1044907793673038602, guid: 1493cd52ff116c14697873c8c60708f1, type: 3}
       propertyPath: DeathLoot.Array.data[0]
@@ -449,6 +461,18 @@ PrefabInstance:
       propertyPath: DeathLoot.Array.data[1]
       value: 
       objectReference: {fileID: 11400000, guid: 4bad31241f20f2a4aa53dba18e6e377d, type: 2}
+    - target: {fileID: 1044907793673038602, guid: 1493cd52ff116c14697873c8c60708f1, type: 3}
+      propertyPath: Sprite_sets.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: c6dec182150f1e948a8fcaa9c85635db, type: 2}
+    - target: {fileID: 1044907793673038602, guid: 1493cd52ff116c14697873c8c60708f1, type: 3}
+      propertyPath: Sprite_sets.Array.data[4]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1044907793673038602, guid: 1493cd52ff116c14697873c8c60708f1, type: 3}
+      propertyPath: Sprite_sets.Array.data[5]
+      value: 
+      objectReference: {fileID: 11400000, guid: 9319872e76ec5e2458f3e3767a90582a, type: 2}
     - target: {fileID: 1044907793673038603, guid: 1493cd52ff116c14697873c8c60708f1, type: 3}
       propertyPath: m_Name
       value: Red Bush
@@ -705,6 +729,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1373869667 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1044907793673038603, guid: 1493cd52ff116c14697873c8c60708f1, type: 3}
+  m_PrefabInstance: {fileID: 784229740}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1373869672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1373869667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d450590a6e0effb42bb9d607fecfe71e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprites: []
+  period: 0
+  RepeatTimes: -1
 --- !u!1001 &1621222338
 PrefabInstance:
   m_ObjectHideFlags: 0

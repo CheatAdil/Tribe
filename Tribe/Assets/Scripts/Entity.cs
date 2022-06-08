@@ -26,6 +26,7 @@ public class Entity : MonoBehaviour
 	[Header("Sprites")]
 	[SerializeField] protected States state;
 	[SerializeField] protected List<Sprite_set> Sprite_sets;  // index must correspond to state index
+	[SerializeField] protected bool StayAfterDeath;
 
 
 	[Header("Holding")]
@@ -139,8 +140,11 @@ public class Entity : MonoBehaviour
     private void Die()
 	{
 		print(name + " just died");
-		Destroy(this.gameObject);
-
+		if (!StayAfterDeath)
+		{
+			Destroy(this.gameObject);
+		}
+		SwitchState(States.dead);
 		LootItem loot = DeathDrop();
 		if (loot != null) loot.Drop(transform.position);
 
@@ -189,15 +193,18 @@ public class Entity : MonoBehaviour
 	}
 	private LootItem HitDrop()
 	{
-		float roll = Random.Range(0f, total_weight_hit);
-
-		for (int i = 0; i < HitLoot.Length; i++)
+		if (state != States.dead)
 		{
-			if (HitLoot[i].GetWeight() >= roll)
+			float roll = Random.Range(0f, total_weight_hit);
+
+			for (int i = 0; i < HitLoot.Length; i++)
 			{
-				return HitLoot[i];
+				if (HitLoot[i].GetWeight() >= roll)
+				{
+					return HitLoot[i];
+				}
+				roll -= HitLoot[i].GetWeight();
 			}
-			roll -= HitLoot[i].GetWeight();
 		}
 		return null;
 	}
