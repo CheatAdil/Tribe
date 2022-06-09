@@ -11,7 +11,6 @@ public class Entity : MonoBehaviour
     [SerializeField] protected int maxHealth;
     [SerializeField] public int health;
     [SerializeField] protected float movementSpeed;
-	[SerializeField] protected int lifeTime;
 
 	[Header("Attack")]
 	[SerializeField] protected float damage;

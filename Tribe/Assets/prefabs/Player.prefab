@@ -105,7 +105,6 @@ MonoBehaviour:
   maxHealth: 1
   health: 0
   movementSpeed: 5
-  lifeTime: 0
   damage: 2
   attack_reach: 1
   attack_what:
@@ -121,6 +120,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: cd81d9481bc96c740afd214fbf98c691, type: 2}
   - {fileID: 11400000, guid: ad806e6395ebe1d45948ba78f626a4c6, type: 2}
   - {fileID: 0}
+  StayAfterDeath: 0
   canHold: 1
   hold_what:
     serializedVersion: 2
@@ -131,7 +131,7 @@ MonoBehaviour:
   Item: {fileID: 0}
   interacts_with:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 768
   total_weight_death: 0
   total_weight_hit: 0
 --- !u!114 &1468571923007936185
@@ -149,11 +149,6 @@ MonoBehaviour:
   sprites: []
   period: 0.5
   RepeatTimes: -1
-  infinite: 0
-  timer: 0
-  step: 0
-  next_mark: 0
-  current: 0
 --- !u!65 &1468571923007936184
 BoxCollider:
   m_ObjectHideFlags: 0

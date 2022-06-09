@@ -11,6 +11,9 @@ public class ClockHand : MonoBehaviour
 	}
 	private void Update()
 	{
-		transform.eulerAngles = Vector3.forward * wa.DayProgress() * -360;
+		if (wa != null)
+		{
+			transform.eulerAngles = Vector3.forward * wa.DayProgress() * -360;
+		}
 	}
 }
