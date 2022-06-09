@@ -541,15 +541,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 114605979196232166, guid: 35db31cbc1713c048a52fac5087fe74a, type: 3}
       propertyPath: deathAge
-      value: 3
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 114605979196232166, guid: 35db31cbc1713c048a52fac5087fe74a, type: 3}
       propertyPath: rebirthAge
-      value: 3
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 114605979196232166, guid: 35db31cbc1713c048a52fac5087fe74a, type: 3}
       propertyPath: NaturalDeath
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4281888760831786339, guid: 35db31cbc1713c048a52fac5087fe74a, type: 3}
       propertyPath: m_RootOrder

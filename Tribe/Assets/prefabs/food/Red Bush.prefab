@@ -178,5 +178,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bday: 0
   NaturalDeath: 0
-  deathAge: 7
-  rebirthAge: 14
+  deathAge: -1
+  rebirthAge: 7
