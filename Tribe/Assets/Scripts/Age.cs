@@ -4,30 +4,28 @@ using UnityEngine;
 
 public class Age : MonoBehaviour
 {
-    [SerializeField] private int bday;
-    private int age;
+    [SerializeField] private int age;
 
     [SerializeField] private bool NaturalDeath;
     [SerializeField] private int deathAge;
     [SerializeField] private int rebirthAge;
-    private bool dead;
+    [SerializeField] private bool dead;
 
-    private WorldAge wa;
     private void Start()
     {
-        wa = GameObject.Find("WorldAge").GetComponent<WorldAge>();
         GameEvents.current.OnNewDay += NewDay;
         if (!NaturalDeath) deathAge = -1;
     }
     private void NewDay() 
     {
-        age = wa.GetWorldAge() - bday;
+        age++;
+        print(1);
         CheckDates();
     }
     private void Killed() /// eto kogda on umiraet ranshe vremeni
     {
         dead = true;
-        NewDay();
+        age = 0;
     }
     private void CheckDates() 
     {
@@ -38,8 +36,11 @@ public class Age : MonoBehaviour
                 if (age >= deathAge)
                 {
                     dead = true;
-                    bday = wa.GetWorldAge();
+                    print(2);
+                    age = 0;
+                    print(3);
                     GetComponent<Entity>().SendMessage("Die", false);
+                    print(4);
                 }
             }
         }
@@ -47,7 +48,7 @@ public class Age : MonoBehaviour
         {
             if (age >= rebirthAge)
             {
-                bday = wa.GetWorldAge();
+                age = 0;
                 dead = false;
                 GetComponent<Entity>().SendMessage("SwitchState", States.idle);
                 SendMessage("Rebirth");

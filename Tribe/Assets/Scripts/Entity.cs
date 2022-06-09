@@ -84,6 +84,10 @@ public class Entity : MonoBehaviour
 			if (health <= 0f)
 			{
 				Die(true);
+				if (TryGetComponent<Age>(out Age a))
+				{
+					SendMessage("Killed", this.gameObject);
+				}
 			}
 		}
 	}
@@ -155,17 +159,11 @@ public class Entity : MonoBehaviour
 		}
 		SwitchState(States.dead);
 
-		if (TryGetComponent<Age>(out Age a)) 
-		{
-			SendMessage("Killed", this.gameObject);
-		}
-
 		if (drop)
 		{
 			LootItem loot = DeathDrop();
 			if (loot != null) loot.Drop(transform.position);
 		}
-
 	}
 	protected void SwitchState(States s) 
 	{

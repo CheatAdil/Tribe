@@ -7,7 +7,7 @@ public class ClockHand : MonoBehaviour
     private WorldAge wa;
 	private void Awake()
 	{
-		wa = GameObject.Find("WorldAge").GetComponent<WorldAge>();
+		wa = WorldAge.current;
 	}
 	private void Update()
 	{

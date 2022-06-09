@@ -28,6 +28,7 @@ public class WorldAge : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.P))
         {
             GlobalNewDay();
+            dayTime = 0;
         }
     }
     public int GetWorldAge() 
