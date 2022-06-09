@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1217288744506238098}
   - component: {fileID: 5164766995252801956}
   - component: {fileID: 7388163566071249769}
+  - component: {fileID: 59282063123025978}
   m_Layer: 6
   m_Name: Cherry
   m_TagString: food
@@ -98,3 +99,16 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.14, y: 0.14, z: 0.2}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &59282063123025978
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8979015128186297699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 312472c59eb1b6544aafd1df0cad23eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  foodValue: 1

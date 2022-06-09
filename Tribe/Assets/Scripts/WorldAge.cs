@@ -6,7 +6,10 @@ using System;
 public class WorldAge : MonoBehaviour
 {
     public static WorldAge current;
-    private static int WrldAge;
+    private static int worldAge;
+    [SerializeField] private float dayLength = 20f;
+    public float dayTime;
+    
 
     private void Awake()
     {
@@ -16,23 +19,30 @@ public class WorldAge : MonoBehaviour
 
     private void Update()
     {
+        if (dayTime < dayLength) dayTime += Time.deltaTime;
+        else
+        {
+            GlobalNewDay();
+            dayTime = 0;
+        }
         if (Input.GetKeyDown(KeyCode.P))
         {
             GlobalNewDay();
         }
     }
-    protected int GetWorldAge() 
+    public int GetWorldAge() 
     {
-        return WrldAge;
+        return worldAge;
     }
     public void GlobalNewDay() 
     {
-        if (OnNewDay != null) 
-        {
-            OnNewDay();
-            WrldAge += 1;
-        }
+        GameEvents.current.NewDay();
+        worldAge += 1;
     }
-    public event Action OnNewDay;
-    
+    public float DayProgress()
+	{
+        return dayTime / dayLength;
+	}
+
+
 }

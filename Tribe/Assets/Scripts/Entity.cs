@@ -138,10 +138,12 @@ public class Entity : MonoBehaviour
 		item.transform.position = holdingPoint.position;
 		item.transform.SetParent(holdingPoint);
 		Item = item;
+		Item.GetComponent<BoxCollider>().enabled = false;
 	}
 	private void drop()
 	{
 		holding = false;
+		Item.GetComponent<BoxCollider>().enabled = true;
 		Item.transform.SetParent(null);
 	}
     private void Die(bool drop)
