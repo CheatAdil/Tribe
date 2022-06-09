@@ -70,14 +70,21 @@ public class Entity : MonoBehaviour
 			anim.init(Sprite_sets[((int)state)].SPRITES, Sprite_sets[((int)state)].repeat_times);
 		}
 	}
+	private void Rebirth() 
+	{
+		Start();
+	}
 	private void GetHurt(int damage)
 	{
-		LootItem loot = HitDrop();
-		if (loot != null) loot.Drop(transform.position);
-		health -= damage;
-        if (health <= 0f)
+		if (state != States.dead)
 		{
-            Die();
+			LootItem loot = HitDrop();
+			if (loot != null) loot.Drop(transform.position);
+			health -= damage;
+			if (health <= 0f)
+			{
+				Die(true);
+			}
 		}
 	}
 	protected void Attack()
@@ -137,7 +144,7 @@ public class Entity : MonoBehaviour
 		holding = false;
 		Item.transform.SetParent(null);
 	}
-    private void Die()
+    private void Die(bool drop)
 	{
 		print(name + " just died");
 		if (!StayAfterDeath)
@@ -145,8 +152,17 @@ public class Entity : MonoBehaviour
 			Destroy(this.gameObject);
 		}
 		SwitchState(States.dead);
-		LootItem loot = DeathDrop();
-		if (loot != null) loot.Drop(transform.position);
+
+		if (TryGetComponent<Age>(out Age a)) 
+		{
+			SendMessage("Killed", this.gameObject);
+		}
+
+		if (drop)
+		{
+			LootItem loot = DeathDrop();
+			if (loot != null) loot.Drop(transform.position);
+		}
 
 	}
 	protected void SwitchState(States s) 
@@ -193,18 +209,14 @@ public class Entity : MonoBehaviour
 	}
 	private LootItem HitDrop()
 	{
-		if (state != States.dead)
+		float roll = Random.Range(0f, total_weight_hit);
+		for (int i = 0; i < HitLoot.Length; i++)
 		{
-			float roll = Random.Range(0f, total_weight_hit);
-
-			for (int i = 0; i < HitLoot.Length; i++)
+			if (HitLoot[i].GetWeight() >= roll)
 			{
-				if (HitLoot[i].GetWeight() >= roll)
-				{
-					return HitLoot[i];
-				}
-				roll -= HitLoot[i].GetWeight();
+				return HitLoot[i];
 			}
+			roll -= HitLoot[i].GetWeight();
 		}
 		return null;
 	}
