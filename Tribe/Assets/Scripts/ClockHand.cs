@@ -5,7 +5,7 @@ using UnityEngine;
 public class ClockHand : MonoBehaviour
 {
     private WorldAge wa;
-	private void Awake()
+	private void Start()
 	{
 		wa = WorldAge.current;
 	}

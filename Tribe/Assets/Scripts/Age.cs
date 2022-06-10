@@ -19,7 +19,6 @@ public class Age : MonoBehaviour
     private void NewDay() 
     {
         age++;
-        print(1);
         CheckDates();
     }
     private void Killed() /// eto kogda on umiraet ranshe vremeni
