@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1338363866511915363}
   - component: {fileID: 5445239832436187704}
   - component: {fileID: 2349001309619143069}
+  - component: {fileID: -2759444566335999932}
   m_Layer: 9
   m_Name: Villager
   m_TagString: villager
@@ -163,3 +164,20 @@ MonoBehaviour:
   sprites: []
   period: 0.5
   RepeatTimes: -1
+--- !u!114 &-2759444566335999932
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5445239832436187702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 183d0775506ae0e498c968fa42e10bed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  age: 0
+  NaturalDeath: 1
+  deathAge: 100
+  rebirthAge: -1
+  dead: 0

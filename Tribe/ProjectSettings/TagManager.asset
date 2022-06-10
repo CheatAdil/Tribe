@@ -7,6 +7,7 @@ TagManager:
   - food
   - enemy
   - villager
+  - child
   layers:
   - Default
   - TransparentFX
@@ -19,7 +20,7 @@ TagManager:
   - foe
   - friend
   - building
-  - 
+  - collectable
   - 
   - 
   - 

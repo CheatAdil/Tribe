@@ -16,17 +16,20 @@ public class Sprite_animator : MonoBehaviour
 
     private void Start()
     {
-        infinite = false;
-        self = GetComponent<SpriteRenderer>();
-        step = period / sprites.Length;
-        next_mark = step;
-        self.sprite = sprites[current];
-        current = 0;
-        timer = 0;
-        if (self == null) GetComponent<Sprite_animator>().enabled = false;
-        if (period == 0) GetComponent<Sprite_animator>().enabled = false;
-        if (RepeatTimes == -1) infinite = true;
-        else if (RepeatTimes < 0) GetComponent<Sprite_animator>().enabled = false;
+        if (sprites.Length != 0)
+        {
+            infinite = false;
+            self = GetComponent<SpriteRenderer>();
+            step = period / sprites.Length;
+            next_mark = step;
+            self.sprite = sprites[current];
+            current = 0;
+            timer = 0;
+            if (self == null) GetComponent<Sprite_animator>().enabled = false;
+            if (period == 0) GetComponent<Sprite_animator>().enabled = false;
+            if (RepeatTimes == -1) infinite = true;
+            else if (RepeatTimes < 0) GetComponent<Sprite_animator>().enabled = false;
+        }
     }
     public void init(Sprite[] _sprites, int rpt) 
     {

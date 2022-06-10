@@ -26,8 +26,16 @@ public class Age : MonoBehaviour
         dead = true;
         age = 0;
     }
+    private void OnDestroy()
+    {
+        GameEvents.current.OnNewDay -= NewDay;
+    }
     private void CheckDates() 
     {
+        if (dead && rebirthAge == -1) 
+        {
+            Destroy(this.gameObject);
+        }
         if (!dead) 
         {
             if (NaturalDeath)
@@ -35,11 +43,10 @@ public class Age : MonoBehaviour
                 if (age >= deathAge)
                 {
                     dead = true;
-                    print(2);
                     age = 0;
-                    print(3);
-                    GetComponent<Entity>().SendMessage("Die", false);
-                    print(4);
+                    if (tag != "child") GetComponent<Entity>().SendMessage("Die", false);
+                    else GetComponent<Entity>().SendMessage("Die", true);
+
                 }
             }
         }
@@ -54,5 +61,6 @@ public class Age : MonoBehaviour
             }
         }
     }
+
 
 }

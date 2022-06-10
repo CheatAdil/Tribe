@@ -23,20 +23,19 @@ public class WorldAge : MonoBehaviour
         else
         {
             GlobalNewDay();
-            dayTime = 0;
         }
         if (Input.GetKeyDown(KeyCode.P))
         {
             GlobalNewDay();
-            dayTime = 0;
         }
     }
-    public int GetWorldAge() 
+    static public int GetWorldAge() 
     {
         return worldAge;
     }
     public void GlobalNewDay() 
     {
+        dayTime = 0;
         GameEvents.current.NewDay();
         worldAge += 1;
     }

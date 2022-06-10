@@ -5,57 +5,106 @@ using UnityEngine;
 public class Village : MonoBehaviour
 {
     [Header("Villagers")]
-    [SerializeField] private List<Villager> allVillagers;
-    [SerializeField] private List<Villager> children;
+    [SerializeField] private List<Villager> Adults;
+    [SerializeField] private List<Villager> Children;
     [SerializeField] private int maxVillagers;
     [SerializeField] private GameObject villagerPrefab;
+    [SerializeField] private GameObject childPrefab;
     
-
-
     [Header("Food")]
-    [SerializeField] private float FoodAvailable;
-    [SerializeField] private float MaxFood;
-    [SerializeField] private float FoodConsumption;
+    [SerializeField] private int FoodAvailable;
+    [SerializeField] private int MaxFood;
+    [SerializeField] private int FoodConsumption;
+    [SerializeField] private int VillagerCostSpawn;
 
     [Header("Buildings")]
-    [SerializeField] private float radius;
-    [SerializeField] private Vector3 position;
+    [SerializeField] private float Spawn_radius;
+    [SerializeField] private float Total_radius;
+    [SerializeField] private Transform Center_position;
 
+    public static Village village;
 
-	private void Start()
+    private void Awake()
+    {
+        village = this;
+    }
+    private void Start()
 	{
         GameEvents.current.OnNewDay += NewDay;
     }
-	private void CreateVillager(GameObject vlObj, Villager vl = null) 
+    private void Update()
     {
-        Villager v = Instantiate(vlObj, new Vector3(4.38f, 0.59f, -5f), Quaternion.identity).GetComponent<Villager>();
-        allVillagers.Add(v);
-        //v = vl;
-        //v.gameObject.SendMessage("StartVillager", GetComponent<Village>());
+        if (Input.GetKeyDown(KeyCode.O)) 
+        {
+            SpawnVillager();
+        }
+    }
+    private void LateUpdate()
+    {
+        ReCheckVillagers();
+    }
+    private void SpawnVillager() 
+    {
+        if (VillagerCostSpawn < FoodAvailable) 
+        {
+            FoodAvailable -= VillagerCostSpawn;
+            CreateVillager(childPrefab);
+            FoodConsumption = ConsumedFood();
+        }
+    }
+	private void CreateVillager(GameObject vlObj, string his_name = "child") 
+    {
+        float newX = Random.Range(-Spawn_radius, Spawn_radius);
+        float maxY = Mathf.Sqrt(Mathf.Pow(Spawn_radius, 2) - Mathf.Pow(newX, 2));
+        float newY = Random.Range(-maxY, maxY);
+        Vector3 sp = Center_position.position + new Vector3(newX, newY, -1f); // cos bonfire is -4 and we need -5
+        Villager v = Instantiate(vlObj, sp, Quaternion.identity).GetComponent<Villager>();
+        v.NAME = his_name;
+        Children.Add(v); 
+    }
+    public void RegisterVillager(Villager v, string his_name = "JOJO") 
+    {
+        Adults.Add(v);
+        v.NAME = his_name;
+
     }
     public float getRadius() 
     {
-        return radius;
+        return Total_radius;
     }
     public Vector3 getPosition()
     {
-        return position;
+        return Center_position.position;
     }
     private void NewDay()
     {
-        FoodAvailable -= (allVillagers.Count * 3 + children.Count * 1);
-        while (allVillagers.Count + children.Count < maxVillagers && FoodAvailable > 5)
-		{
-            CreateVillager(villagerPrefab);
-            FoodAvailable -= 5;
-		}
+        FoodAvailable -= ConsumedFood();
         if (FoodAvailable < 0)
 		{
-            FoodAvailable = 0;
-            allVillagers[0].SendMessage("Die", true);
-            allVillagers.RemoveAt(0);
+            if (Adults.Count != 0)
+            {
+                int toDie = (FoodAvailable / (ConsumedFood() / Adults.Count)) * -1;
+                FoodAvailable = 0;
+                print($"day: {WorldAge.GetWorldAge()} : to die of starvation: {toDie}");
+                toDie -= Random.Range(0, toDie);
+                print($"day: {WorldAge.GetWorldAge()} : to die after divine intervention: {toDie}");
+                for (int i = 0; i < toDie; i++)
+                {
+                    Adults[0].SendMessage("Die", true);
+                    Adults.RemoveAt(0);
+                }
+            }
         }
             
+    }
+    private void ReCheckVillagers() 
+    {
+        Adults.RemoveAll(x => !x);
+        Children.RemoveAll(x => !x);
+    }
+    private int ConsumedFood() 
+    {
+        return (Adults.Count * 3 + Children.Count * 1);
     }
 
     #region Food

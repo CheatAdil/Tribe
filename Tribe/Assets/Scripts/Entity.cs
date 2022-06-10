@@ -172,7 +172,14 @@ public class Entity : MonoBehaviour
 			if (anim != null)
 			{
 				anim.enabled = true;
-				anim.init(Sprite_sets[((int)state)].SPRITES, Sprite_sets[((int)state)].repeat_times);
+				if (Sprite_sets[((int)state)] != null)
+				{
+					anim.init(Sprite_sets[((int)state)].SPRITES, Sprite_sets[((int)state)].repeat_times);
+				}
+				else 
+				{
+					Debug.LogWarning($"no sprites on state {s}: object: {name}");
+				}
 			}
 		}
 	}
