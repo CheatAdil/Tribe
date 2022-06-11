@@ -105,7 +105,19 @@ public class Entity : MonoBehaviour
 		{
 			if (holding)
 			{
+				Collider[] colliders = Physics.OverlapSphere(transform.position, holdDistance, interacts_with);
+				if (colliders.Length != 0)
+				{
+					if (colliders[0].tag == "villager")
+					{
+						drop();
+						colliders[0].SendMessage("pickup", Item);
+						Item = null;
+						return;
+					}
+				}
 				drop();
+				Item = null;
 			}
 			else
 			{
@@ -118,6 +130,7 @@ public class Entity : MonoBehaviour
 				else 
 				{
 					OtherInteractions();
+
 				}
 			}
 		}
@@ -131,7 +144,10 @@ public class Entity : MonoBehaviour
 		Collider[] colliders = Physics.OverlapSphere(transform.position, attack_reach, interacts_with);
 		if (colliders.Length != 0)
 		{
-			print($"Hi! {colliders[0].name}");
+			if (colliders[0].tag == "villager")
+			{
+				colliders[0].SendMessage("followPlayer");
+			}
 		}
 	}
 	private void pickup(GameObject item) 
@@ -143,7 +159,7 @@ public class Entity : MonoBehaviour
 		Item = item;
 		Item.GetComponent<BoxCollider>().enabled = false;
 	}
-	private void drop()
+	protected void drop()
 	{
 		holding = false;
 		Item.GetComponent<BoxCollider>().enabled = true;

@@ -696,7 +696,7 @@ GameObject:
   - component: {fileID: 720351743}
   m_Layer: 0
   m_Name: White Circle
-  m_TagString: Untagged
+  m_TagString: Bonfire
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1874,9 +1874,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2328293928316043732, guid: 555dba17e24ac244692b51b988551090, type: 3}
+      propertyPath: m_Radius
+      value: 0.15
+      objectReference: {fileID: 0}
     - target: {fileID: 5999821065843185530, guid: 555dba17e24ac244692b51b988551090, type: 3}
       propertyPath: m_Radius
-      value: 0.6
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 5999821065843185530, guid: 555dba17e24ac244692b51b988551090, type: 3}
       propertyPath: m_IsTrigger

@@ -109,7 +109,7 @@ public class Village : MonoBehaviour
     }
     private int ConsumedFood() 
     {
-        return (Adults.Count * 3 + Children.Count * 1);
+        return (3 + (Adults.Count * 3 + Children.Count * 1));
     }
 	private void OnTriggerEnter(Collider other)
 	{
