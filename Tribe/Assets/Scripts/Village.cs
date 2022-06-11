@@ -22,6 +22,9 @@ public class Village : MonoBehaviour
     [SerializeField] private float Total_radius;
     [SerializeField] private Transform Center_position;
 
+    [Header("Interface")]
+    [SerializeField] private GameObject VillageInterface;
+
     public static Village village;
 
     private void Awake()
@@ -43,7 +46,7 @@ public class Village : MonoBehaviour
     {
         ReCheckVillagers();
     }
-    private void SpawnVillager() 
+    public void SpawnVillager() 
     {
         if (VillagerCostSpawn < FoodAvailable) 
         {
@@ -108,13 +111,20 @@ public class Village : MonoBehaviour
     {
         return (Adults.Count * 3 + Children.Count * 1);
     }
-
-    #region Food
-    public void RecieveFood(int foodValue)
+	private void OnTriggerEnter(Collider other)
+	{
+        if (other.name == "holdingPoint") VillageInterface.SetActive(true);
+    }
+	private void OnTriggerExit(Collider other)
+	{
+        if (other.name == "holdingPoint") VillageInterface.SetActive(false);
+    }
+	public void RecieveFood(int foodValue)
 	{
         FoodAvailable += foodValue;
 	}
-    #endregion
+
+
 
 }
 

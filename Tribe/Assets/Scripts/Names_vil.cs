@@ -70,6 +70,12 @@ public class Names_vil : MonoBehaviour
 "Gizelle," +
 "Kaylin," +
 "Lacy," +
+"Lucy," +
+"John," +
+"George," +
+"Ringo," +
+"Paul," +
+"Eleanor," +
 "Malakhi,"; 
 
 
@@ -128,7 +134,12 @@ public class Names_vil : MonoBehaviour
 "Jean," +
 "Burks," +
 "Vega," +
-"Cantrell,";
+"In the sky with diamonds," +
+"Lennon," +
+"Harrison," +
+"Mccartney," +
+"Starr," +
+"Rigby,";
 
         fn = firstNames.Split(',');
         ln = lastNames.Split(',');

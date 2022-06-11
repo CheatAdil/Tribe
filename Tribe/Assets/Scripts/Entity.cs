@@ -129,7 +129,7 @@ public class Entity : MonoBehaviour
 	private void OtherInteractions()
 	{
 		Collider[] colliders = Physics.OverlapSphere(transform.position, attack_reach, interacts_with);
-		if (colliders.Length != 0) 
+		if (colliders.Length != 0)
 		{
 			print($"Hi! {colliders[0].name}");
 		}
