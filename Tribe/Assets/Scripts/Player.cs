@@ -23,5 +23,6 @@ public class Player : Entity
 		if (Input.GetKeyDown(KeyCode.Space)) Attack();
 		if (Input.GetKeyDown(KeyCode.E)) Interact();
 	}
+    
 }
 

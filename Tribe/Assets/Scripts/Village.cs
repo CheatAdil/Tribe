@@ -62,10 +62,11 @@ public class Village : MonoBehaviour
         v.NAME = his_name;
         Children.Add(v); 
     }
-    public void RegisterVillager(Villager v, string his_name = "JOJO") 
+    public void RegisterVillager(Villager v, string his_name = "random") 
     {
         Adults.Add(v);
-        v.NAME = his_name;
+        if (his_name == "random") v.NAME = Names_vil.NewName();
+        else v.NAME = his_name;
 
     }
     public float getRadius() 
@@ -78,7 +79,8 @@ public class Village : MonoBehaviour
     }
     private void NewDay()
     {
-        FoodAvailable -= ConsumedFood();
+        FoodConsumption = ConsumedFood();
+        FoodAvailable -= FoodConsumption;
         if (FoodAvailable < 0)
 		{
             if (Adults.Count != 0)

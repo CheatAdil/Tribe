@@ -883,6 +883,7 @@ GameObject:
   - component: {fileID: 1831669810}
   - component: {fileID: 1831669813}
   - component: {fileID: 1831669812}
+  - component: {fileID: 1831669814}
   - component: {fileID: 1831669811}
   m_Layer: 0
   m_Name: UTILITY OBJECT
@@ -956,6 +957,18 @@ MonoBehaviour:
   Spawn_radius: 1
   Total_radius: 6
   Center_position: {fileID: 1044907793978328366}
+--- !u!114 &1831669814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1831669808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4387a32ff87e984b8f8b0f11cfc8c1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1922546142
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1031,7 +1044,7 @@ GameObject:
   - component: {fileID: 1044907793455520811}
   m_Layer: 10
   m_Name: House
-  m_TagString: villager
+  m_TagString: Building
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1303,6 +1316,18 @@ PrefabInstance:
     - target: {fileID: 1468571923007936190, guid: 555dba17e24ac244692b51b988551090, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5999821065843185530, guid: 555dba17e24ac244692b51b988551090, type: 3}
+      propertyPath: m_Radius
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5999821065843185530, guid: 555dba17e24ac244692b51b988551090, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7581313593501201977, guid: 555dba17e24ac244692b51b988551090, type: 3}
+      propertyPath: m_Radius
+      value: 0.4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 555dba17e24ac244692b51b988551090, type: 3}

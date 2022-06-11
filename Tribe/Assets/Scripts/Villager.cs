@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using OutSolTools;
+using TMPro;
 
 
 public class Villager : Entity
 {
     public string NAME;
     [SerializeField] private VillagerJob JOB;
+    private TextMeshProUGUI text;
 
     #region Movement
     private Vector3 target;
@@ -23,6 +25,9 @@ public class Villager : Entity
         if (JOB != VillagerJob.child)
         {
             Village.village.RegisterVillager(this);
+            text = GetComponentInChildren<TextMeshProUGUI>();
+            text.text = NAME;
+            ToggleNameVisibility(false);
         }
     }
     private void Update()
@@ -45,8 +50,16 @@ public class Villager : Entity
             default:
                 break;
         }
+        
     }
 
+    private void ToggleNameVisibility(bool on) 
+    {
+        if (text != null) 
+        {
+            text.enabled = on;
+        }
+    }
     private Vector3 UpdateTarget(Vector3 _target) 
     {
         if (Vector3.Distance(transform.position, _target) > allowedError) 
