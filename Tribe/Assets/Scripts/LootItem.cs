@@ -32,7 +32,7 @@ public class LootItem : ScriptableObject
             {
                 loots[i] = Instantiate(obj, pos, Quaternion.identity);
             }
-            GameObject n = Instantiate(new GameObject());
+            GameObject n = new GameObject();
             n.name = "lootDropper";
             n.transform.parent = GameObject.Find("UTILITY OBJECT").transform;
             n.AddComponent<LootDropper>();

@@ -9,6 +9,10 @@ public class Villager : Entity
 {
     public string NAME;
     [SerializeField] private VillagerJob JOB;
+    public bool FollowPlayer;
+    private Transform pl;
+
+
     private TextMeshProUGUI text;
 
     #region Movement
@@ -20,6 +24,7 @@ public class Villager : Entity
     #endregion
     private void Awake() // для тестов
     {
+        pl = Player.main.transform;
         IdleToMove = 3f;
         timer = 0f;
         if (JOB != VillagerJob.child)
@@ -27,6 +32,7 @@ public class Villager : Entity
             Village.village.RegisterVillager(this);
             text = GetComponentInChildren<TextMeshProUGUI>();
             text.text = NAME;
+            text.color = Color.yellow;
             ToggleNameVisibility(false);
         }
     }
@@ -35,16 +41,19 @@ public class Villager : Entity
         switch (state)
         {
             case States.move:
+            case States.carry_move:
                 target = UpdateTarget(target);
                 Vector3 direction = target - transform.position;
                 transform.Translate(direction.normalized * movementSpeed * Time.deltaTime, Space.World);
                 break;
             case States.idle:
+            case States.carry_idle:
                 timer += Time.deltaTime;
                 if (timer >= IdleToMove)
                 {
                     timer = 0;
-                    SwitchState(States.move);
+                    if (!holding) SwitchState(States.move);
+                    else SwitchState(States.carry_move);
                 }
                 break;
             default:
@@ -52,12 +61,56 @@ public class Villager : Entity
         }
         
     }
-
+    private void followPlayer() 
+    {
+        if (JOB != VillagerJob.child)
+        {
+            if (!FollowPlayer)
+            {
+                FollowPlayer = true;
+                text.color = Color.green;
+                timer = 0;
+                if (!holding) SwitchState(States.move);
+                else SwitchState(States.carry_move);
+            }
+            else
+            {
+                FollowPlayer = false;
+                text.color = Color.yellow;
+                if (!holding) SwitchState(States.idle);
+                else SwitchState(States.carry_idle); ;
+                IdleToMove = 1f;
+                timer = 0;
+            }
+        }
+    }
     private void ToggleNameVisibility(bool on) 
     {
         if (text != null) 
         {
             text.enabled = on;
+        }
+    }
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.tag == "FollowStop" && FollowPlayer)
+        {
+            if (!holding) SwitchState(States.idle);
+            else SwitchState(States.carry_idle);
+            IdleToMove = 1f;
+        }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Bonfire") 
+        {
+            if (holding)
+            {
+                drop();
+                Item = null;
+                SwitchState(States.idle);
+                IdleToMove = 1f;
+            }
         }
     }
     private Vector3 UpdateTarget(Vector3 _target) 
@@ -68,18 +121,29 @@ public class Villager : Entity
         }
         else 
         {
-            if (OutSolTools.CoreFunctions.CheckChance(0.3f))
+            if (FollowPlayer && pl != null)
             {
-                float newX = Random.Range(-Village.village.getRadius(), Village.village.getRadius());
-                float maxY = Mathf.Sqrt(Mathf.Pow(Village.village.getRadius(), 2) - Mathf.Pow(newX, 2));
+                float newX = Random.Range(-0.15f, -0.15f);
+                float maxY = Mathf.Sqrt(Mathf.Pow(0.15f, 2) - Mathf.Pow(newX, 2));
                 float newY = Random.Range(-maxY, maxY);
-                return (Village.village.getPosition() + new Vector3(newX, newY, -1f));
+                return pl.position + new Vector3(newX, newY, -1f);
             }
-            else 
+            else
             {
-                SwitchState(States.idle);
-                IdleToMove = Random.Range(1f, 8f);
-                return Vector3.zero;
+                if (OutSolTools.CoreFunctions.CheckChance(0.3f))
+                {
+                    float newX = Random.Range(-Village.village.getRadius(), Village.village.getRadius());
+                    float maxY = Mathf.Sqrt(Mathf.Pow(Village.village.getRadius(), 2) - Mathf.Pow(newX, 2));
+                    float newY = Random.Range(-maxY, maxY);
+                    return (Village.village.getPosition() + new Vector3(newX, newY, -1f));
+                }
+                else
+                {
+                    if (!holding) SwitchState(States.idle);
+                    else SwitchState(States.carry_idle);
+                    IdleToMove = Random.Range(1f, 8f);
+                    return Vector3.zero;
+                }
             }
         }
     }
