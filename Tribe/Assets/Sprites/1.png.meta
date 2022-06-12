@@ -565,7 +565,7 @@ TextureImporter:
         width: 17
         height: 17
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -598,6 +598,69 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: 1_23
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 64
+        width: 23
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c761defadca4884c8324f43dab880a4
+      internalID: -965381542
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 1_24
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 64
+        width: 23
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8948312e92950fd4ba66a99fb5154724
+      internalID: -859254875
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 1_25
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 2
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 72f311394382aa148b1deb24707bb0da
+      internalID: 830535800
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -615,11 +678,13 @@ TextureImporter:
       1_19: 2071595218
       1_13: 1828570269
       1_6: 97761018
+      1_23: -965381542
       1_1: 48960394
       1_10: -1948310524
       1_12: 302401809
       1_22: -674048182
       1_0: 1634833242
+      1_25: 830535800
       1_2: 184177018
       1_14: 1169146186
       1_5: -622734567
@@ -630,6 +695,7 @@ TextureImporter:
       1_16: -1052344172
       1_17: -759106179
       1_21: -1922222925
+      1_24: -859254875
       1_11: 1753470411
       1_3: -48369324
   spritePackingTag: 

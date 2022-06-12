@@ -41,10 +41,14 @@ public class Villager : Entity
         switch (state)
         {
             case States.move:
-            case States.carry_move:
                 target = UpdateTarget(target);
                 Vector3 direction = target - transform.position;
                 transform.Translate(direction.normalized * movementSpeed * Time.deltaTime, Space.World);
+                break;
+            case States.carry_move:
+                target = Village.village.getPosition() + Vector3.back;
+                Vector3 directio = target - transform.position;
+                transform.Translate(directio.normalized * movementSpeed * Time.deltaTime, Space.World);
                 break;
             case States.idle:
             case States.carry_idle:
