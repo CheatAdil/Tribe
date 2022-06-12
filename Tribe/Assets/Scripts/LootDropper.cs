@@ -9,7 +9,7 @@ public class LootDropper : MonoBehaviour
     [SerializeField] private Vector3[] orig;
     [SerializeField] private float[] vars;
     private float f;
-    [SerializeField] float z = -5;
+    [SerializeField] float z = 0;
     private float timer = 0;
     private float tm;
 
@@ -28,7 +28,8 @@ public class LootDropper : MonoBehaviour
         {
             vars[i] = Random.Range(1f, 1f + v);
             orig[i] = l[i].transform.position;
-            targets[i] = (new Vector3(Mathf.Cos(Random.Range(0, 360f)), Mathf.Sin(Random.Range(0, 360f)), z)) - orig[i];
+
+            targets[i] = (new Vector3(Mathf.Cos(Random.Range(0, 360f) * Mathf.Deg2Rad), Mathf.Sin(Random.Range(0, 360f)), z)) - orig[i];
         }
     }
     private void Update()

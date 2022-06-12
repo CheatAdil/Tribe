@@ -112,6 +112,7 @@ public class Entity : MonoBehaviour
 					{
 						drop();
 						colliders[0].SendMessage("pickup", Item);
+						colliders[0].SendMessage("SwitchState", States.carry_move);
 						Item = null;
 						return;
 					}
